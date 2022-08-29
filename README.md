@@ -1,34 +1,24 @@
-# Foobar
+# Weheite
 
-Foobar is a Python library for dealing with word pluralization.
+A web platform for creating forums and communities
 
-## Installation
+## What are we going to use?
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
-
-## Usage
-
-```python
-import foobar
-
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
-```
+Python
+Django
+Html
+CSS
+SQL
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Júlio Padilha de Holanda Cavancanti - jphc@cesar.school
+Roberto Arruda Braga - rab2@cesar.school
+Matheus Vellez Bione Botelho - mvbb@cesar.school
+Leonardo Menezes Soares de Azevedo - lmsa@cesar.school
+Nicole Victory Marinho da Silva - nvms@cesar.school
+Maria Júlia Pessoa Cunha - mjpc@cesar.school
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Definition
+
+A practical activity involving the creation of a Web Application with adaptable design for Fundamentos de Desenvolvimento de Software
