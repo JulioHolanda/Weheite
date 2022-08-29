@@ -9,6 +9,7 @@ A web platform for creating forums and communities
 * Html
 * CSS
 * SQL
+* [Jira] ( https://weheite.atlassian.net/jira/software/projects/WEH/boards/1/roadmap?assignee=unassigned%2C62715a232db3080070243629&shared=&atlOrigin=eyJpIjoiMzhhOTViYjZlMDE2NDIwYmFiZTMxYmE1OWQxMzIwZGIiLCJwIjoiaiJ9)
 
 ## Contributing
 
