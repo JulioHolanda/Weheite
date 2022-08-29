@@ -1,6 +1,6 @@
 # Weheite
 
-A web platform for creating forums and communities
+A web forum used to aid CESAR's students programming dificulties.
 
 ## What are we going to use?
 
