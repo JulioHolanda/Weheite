@@ -1,9 +1,9 @@
 from django.urls import path
 
-from discussion.views import home
+from . import views
 
 
 urlpatterns = [
-    path('', home),
+    path('', views.home),
     #path('contato/', contato),
 ]
