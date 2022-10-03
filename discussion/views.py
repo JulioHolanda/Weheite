@@ -11,12 +11,17 @@ def home(request):
 
 #def create(request):
 
- #   return render(request,'discussion/pages/createDiscussion.html')
+#   return render(request,'discussion/pages/createDiscussion.html')
 
 def addInDiscussion(request):
-    if request.method == "POST":
-        Problem.title = request.POST["titulo_post"]
-        Problem.description = request.POST["corpo_post"]
+    if request.method == 'POST':
+        title = request.POST["titulo_post"]
+        description = request.POST["corpo_post"]
+
+    Problem = {
+        "title"= title,
+        "description" = description,
+    } 
 
     return render(request,'discussion/createDiscussion.html')
 
@@ -24,6 +29,9 @@ def like(request, pk):
     post = get_object_or_404(Problem, id = request.POST.get('post_id'))
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse(''))
+
+def Discussion(request):
+    return render
 
 
 

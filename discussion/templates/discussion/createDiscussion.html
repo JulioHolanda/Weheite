@@ -22,6 +22,13 @@
             justify-content: end;
         }
 
+        button{
+            text-decoration: none;
+            background-color: grey;
+            color: white;
+            border-radius: 5px;
+            padding: 3px;
+        }
 
         a {
             text-decoration: none;
@@ -92,17 +99,17 @@
     </header>
     <footer>
         <fieldset>
-            <form action="{%url 'addInDiscussion' %}"" method = "POST">    
+            <form action="{%url 'addInDiscussion' %}"" method = " POST">
                 <div>
                     <input type="text" name="titulo_post" placeholder="Insira seu titulo" required style=width:500px;>
                 </div>
                 <div>
-                    <textarea name="corpo_post" rows="24" cols="82" placeholder="Insira a descrição"
+                    <textarea type="text" name="corpo_post" rows="24" cols="82" placeholder="Insira a descrição"
                         style=resize:none;></textarea>
                 </div>
                 <div class="botoes">
                     <a href="/" class="cancelbutton">Cancelar </a>
-                    <a href="#" class="postbutton">Postar</a>
+                    <button type="submit">Postar</button>
                 </div>
             </form>
         </fieldset>
