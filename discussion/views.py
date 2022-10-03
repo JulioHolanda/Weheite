@@ -5,7 +5,7 @@ from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 def home(request):
-    return render(request, 'discussion/pages/home.html', context={
+    return render(request, 'discussion/home.html', context={
         'titulo': "repetições",
     })
 
@@ -18,7 +18,7 @@ def addInDiscussion(request):
         Problem.title = request.POST["titulo_post"]
         Problem.description = request.POST["corpo_post"]
 
-    return render(request,'discussion/pages/createDiscussion.html')
+    return render(request,'discussion/createDiscussion.html')
 
 def like(request, pk):
     post = get_object_or_404(Problem, id = request.POST.get('post_id'))
