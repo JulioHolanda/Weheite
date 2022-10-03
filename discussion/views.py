@@ -8,6 +8,11 @@ def home(request):
         'titulo': "repetições",
     })
 
+def create(request):
+    return render(request,'discussion/pages/createDiscussion.html')
+
+
+
 
 
 #def contato(request):
