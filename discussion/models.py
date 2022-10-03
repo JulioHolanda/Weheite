@@ -8,6 +8,7 @@ class Problem(models.Model):
    description = models.CharField(max_length=10000)
    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
    created_at = models.DateTimeField(auto_now_add = True)
+   likes = models.ManyToManyField(User, related_name = 'forum_posts')
 
    def __str__(self):
       return self.title

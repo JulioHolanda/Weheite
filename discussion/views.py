@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import *
-from .forms import *
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Problem
+from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 def home(request):
@@ -19,6 +19,14 @@ def addInDiscussion(request):
         Problem.description = request.POST["corpo_post"]
 
     return render(request,'discussion/pages/createDiscussion.html')
+
+def like(request, pk):
+    post = get_object_or_404(Problem, id = request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse(''))
+
+
+
 
 
 #def contato(request):
