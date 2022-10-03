@@ -6,6 +6,6 @@ from . import views
 urlpatterns = [
     path('', views.home),
     #path('<int:problem_id>/', views.discussion),
-    path('createDiscussion/', views.create ),
+    path('createDiscussion/', views.addInDiscussion ),
     #path('<int:problem_id>/awnserDiscussion/', views.answer),
 ]

@@ -92,17 +92,19 @@
     </header>
     <footer>
         <fieldset>
-            <div>
-                <input type="text" name="titulo_post" placeholder="Insira seu titulo" required style=width:500px;>
-            </div>
-            <div>
-                <textarea name="corpo_post" rows="24" cols="82" placeholder="Insira a descrição"
-                    style=resize:none;></textarea>
-            </div>
-            <div class="botoes">
-                <a href="/" class="cancelbutton">Cancelar </a>
-                <a href="#" class="postbutton">Postar</a>
-            </div>
+            <form action="{%url 'addInDiscussion' %}"" method = "POST">    
+                <div>
+                    <input type="text" name="titulo_post" placeholder="Insira seu titulo" required style=width:500px;>
+                </div>
+                <div>
+                    <textarea name="corpo_post" rows="24" cols="82" placeholder="Insira a descrição"
+                        style=resize:none;></textarea>
+                </div>
+                <div class="botoes">
+                    <a href="/" class="cancelbutton">Cancelar </a>
+                    <a href="#" class="postbutton">Postar</a>
+                </div>
+            </form>
         </fieldset>
     </footer>
 </body>
