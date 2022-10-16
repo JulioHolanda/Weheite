@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .inputs {
+            background-color: lightblue;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        button {
+            width: 100px;
+            align-self: center;
+        }
+
+        input {
+            color: black;
+        }
+    </style>
 </head>
+
 <body>
-    <form action="{% url 'authors:create' %}" method="POST">
+    <header>
+        <h2>Registro</h2>
+    </header>
+    <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
-        <div class="main-content center containner">
-            <h2>Registro {{request.session.number}}</h2>
-        </div>
-        
+
         <div class="main-content center containner">
             <h2>{{message.success}}</h2>
         </div>
-        
-        <div>
+
+        <div class="inputs">
             {{form.as_p}}
             <button type="submit">Enviar</button>
         </div>
 
     </form>
 </body>
+
 </html>
