@@ -14,14 +14,14 @@ def home(request):
 #   return render(request,'discussion/pages/createDiscussion.html')
 
 def addInDiscussion(request):
-    if request.method == 'POST':
+    """if request.method == 'POST':
         title = request.POST["titulo_post"]
         description = request.POST["corpo_post"]
 
     Problem = {
         "title"= title,
         "description" = description,
-    } 
+    """
 
     return render(request,'discussion/createDiscussion.html')
 
