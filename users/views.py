@@ -3,10 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 
 from .forms import CreateInForum, SignupForm
+from .models import Forum
 
 
 def home(request):
-    return render(request, 'users/home.html')
+    discussao=Forum.objects.all() # Collect all records from table 
+    return render(request, 'users/home.html', {'discussao': discussao})
 
 
 def signup(request):

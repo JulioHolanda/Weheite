@@ -2,17 +2,23 @@
 
 {% block style %}
 <style>
-    header {
-        width: 100vw;
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 </style>
 {% endblock style %}
 
 {% block content %}
-<header>
     {% if user.is_authenticated %}
         <h1>Welcome {{ user.username }}!</h1>
         <a class="a3" href="{% url 'forum' %} ">Criar</a>
+
+        {% for posts in discussao %}
+            <p>{{posts.autor}}</p>
+            <p>{{posts.title}}</p>
+            <p>{{posts.body}}</p>
+            <br>
+        {% endfor %}
 
         {% comment %} 
         {% for i in forum %}
@@ -35,6 +41,4 @@
     <a class="a1" href="{% url  'signup' %}">Sign Up</a>
     <a class="a2" href="{% url 'login' %}">Login</a>
     {% endif %}
-
-</header>
 {% endblock content %}
