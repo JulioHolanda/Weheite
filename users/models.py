@@ -30,7 +30,7 @@ class Forum(models.Model):
 class Reply(models.Model):
     autor = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
-    body = models.TextField(max_length=10000)
+    body = models.TextField(max_length=999)
     likes = models.IntegerField(default=0)
 
     def __str__(self):

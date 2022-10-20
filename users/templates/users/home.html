@@ -2,7 +2,8 @@
 
 {% block style %}
 <style>
-    * {
+    :root {
+        font-size: 14px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -27,18 +28,6 @@
         padding-bottom: 10px;
     }
 
-    a {
-        text-decoration: none;
-        background-color: lightcoral;
-        height: fit-content;
-        width: fit-content;
-        padding: 6px;
-        color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        border-radius: 8px;
-    }
-
     input {
         background-color: lightcoral;
         height: fit-content;
@@ -50,8 +39,18 @@
         border-radius: 8px;
     }
 
+    a {
+        text-decoration: none;
+    }
+
+    .a5 {
+        color: black;
+    }
+
     a:hover {
         box-shadow: 0 0 4px #fff;
+        text-decoration: none;
+        color: #494545;
     }
 
     .BoxAutor {
@@ -74,25 +73,44 @@
     .BoxBody {
         margin-top: 10px;
         width: 900px;
-        height: 150px;
+        height: 190px;
         background: none;
         border: 2px solid;
         padding: 3px;
-        font-size: 18px;
+        font-size: 1rem;
     }
 
     .a3 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
         margin-left: 10px;
         margin-top: 20px;
     }
 
     .a2 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
         margin-right: 10px;
         margin-top: 20px;
     }
 
     .TextBody {
-        max-width: 30ch;
+        word-wrap: break-word;
+
     }
 
     .not-logged {
@@ -108,10 +126,28 @@
     }
 
     .a1 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
         padding: 10px
     }
 
     .a4 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
         padding: 10px
     }
 </style>
@@ -131,9 +167,11 @@
 <div class="BoxAutor">
     <p><b><i>@{{posts.autor}}</i></b></p>
 </div>
-    <div class="BoxTitle">
-        <a href="{{posts.id}}/detailForum/"><p><b>{{posts.title}}</b></p></a>
-    </div>
+<div class="BoxTitle">
+    <a class="a5" href="{{posts.id}}/detailForum/">
+        <p><b>{{posts.title}}</b></p>
+    </a>
+</div>
 <div class="BoxBody">
     <p class="TextBody">{{posts.body}}</p>
 </div>
