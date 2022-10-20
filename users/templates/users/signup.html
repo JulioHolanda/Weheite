@@ -1,25 +1,86 @@
 {% extends 'users/base.html' %}
 
+{% block style %}
+<style>
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: rgb(197, 193, 193);
+        display: flex;
+        justify-items: center;
+    }
+
+    h2 {
+        font-size: 100px;
+    }
+
+    input {
+        font-size: 18px;
+        background: none;
+        display: flex;
+        width: 400px;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border: none;
+        border-radius: 8px;
+        align-self: center;
+    }
+
+    a {
+        background: none;
+        color: black;
+        font-size: 18px;
+        text-justify: start;
+        margin-right: 160px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .signup-buttons {
+        width: 400px;
+        display: flex;
+        justify-content: start;
+    }
+</style>
+{% endblock style %}
+
 {% block content %}
-    <br>
-    <div class="alert alert-success" role="alert">
-        <h3 style="text-align: center;">Sign Up</h3>
+<div>
+    <h3 style="text-align: center;">Sign Up</h3>
+</div>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+        <small style="color: rgb(99, 92, 92)">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    </p>
+    {% endfor %}
+    <div class="signup-buttons">
+        <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
+        <button type="submit">Criar conta</button>
     </div>
-    <br>
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-        <p>
-            {{ field.label_tag }}<br>
-            {{ field }}
-            {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-            {% endif %}
-            {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-            {% endfor %}
-        </p>
-        {% endfor %}
-        <button type="submit">Sign up</button>
-    </form>
+</form>
 {% endblock content%}

@@ -1,13 +1,70 @@
 {% extends 'users/base.html' %}
 
+{% block style %}
+<style>
+  * {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background-color: rgb(197, 193, 193);
+  }
+
+  h2 {
+    font-size: 100px;
+  }
+
+  input {
+    font-size: 18px;
+    background: none;
+    display: flex;
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  .main-content-login {
+    display: flex;
+    height: 600px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    background-color: lightcoral;
+    height: fit-content;
+    width: fit-content;
+    padding: 6px;
+    color: #fff;
+    font-weight: bolder;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    align-self: center;
+  }
+
+  a {
+    background: none;
+    color: black;
+    font-size: 18px;
+    text-justify: start;
+    margin-right: 160px;
+  }
+</style>
+{% endblock style %}
+
 {% block content %}
+<br>
+<div class="main-content-login">
+  <h2 style="text-align: center;">Login</h2>
   <br>
-  <div class="alert alert-success" role="alert">
-    <h2 style="text-align: center;">Login</h2>
-  </div>
+  <br>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Login</button>
+    <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
+    <button type="submit">Entrar</button>
   </form>
+</div>
 {% endblock content%}

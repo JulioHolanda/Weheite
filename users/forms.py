@@ -18,12 +18,19 @@ class SignupForm(UserCreationForm):
  
 
 class CreateInForum(ModelForm):
-    title = forms.CharField(max_length=50, required=True, help_text='Optional.')
-    body = forms.CharField(max_length=10000, required=True, help_text='Optional.')
+    title = forms.CharField(max_length=50, required=True, help_text='Required.')
+    body = forms.CharField(max_length=10000, required=True, help_text='Required.')
 
     class Meta:
         model = Forum
         fields = ['title', 'body']
+
+class CreateInReply(ModelForm):
+    body = forms.CharField(max_length=10000, required=True, help_text='Required.')
+
+    class Meta:
+        model = Reply
+        fields = ['body',]
 
 
 # class CreateInDiscussion(ModelForm):

@@ -2,12 +2,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render, get_object_or_404
 
-from .forms import CreateInForum, SignupForm
+from .forms import CreateInForum, CreateInReply, SignupForm
 from .models import Forum
 
 
 def home(request):
-    discussao=Forum.objects.all() # Collect all records from table 
+    discussao=Forum.objects.all().order_by('-id') # Collect all records from table 
     return render(request, 'users/home.html', {'discussao': discussao})
 
 
@@ -42,7 +42,7 @@ def criarForum(request):
             forum.title = form.cleaned_data.get('title')
             forum.body = form.cleaned_data.get('body')
             forum.save()
-            return redirect('forum')
+            return redirect('home')
     else:
         form = CreateInForum()
 
@@ -53,3 +53,23 @@ def detailForum(request, forum_id):
     forum = get_object_or_404(Forum, pk = forum_id)
 
     return render(request, "users/detailForum.html", {'forum':forum})
+
+def replyForum(request, forum_id):
+    if request.method == 'POST':
+        form = CreateInReply(request.POST)
+        if form.is_valid():
+            reply = form.save()
+            reply.refresh_from_db()
+            reply.autor = request.user
+            reply.body = form.cleaned_data.get('body')
+            reply.forum = request.title
+            reply.save()
+
+            forum = get_object_or_404(Forum, pk = forum_id)
+            return render(request, "users/detailForum.html", {'forum':forum})
+        
+    else:
+        form = CreateInReply()
+
+    context = {'form': form}
+    return render(request, 'users/replyForum.html', context)
