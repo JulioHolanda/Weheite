@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from .forms import CreateInForum, SignupForm
 from .models import Forum
@@ -48,3 +48,8 @@ def criarForum(request):
 
     context = {'form': form}
     return render(request, 'users/formulario.html', context)
+
+def detailForum(request, forum_id):
+    forum = get_object_or_404(Forum, pk = forum_id)
+
+    return render(request, "users/detailForum.html", {'forum':forum})
