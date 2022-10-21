@@ -33,5 +33,4 @@ class Reply(models.Model):
     body = models.TextField(max_length=10000)
     likes = models.IntegerField(default=0)
 
-    def __str__(self):
-        return self.title
+
