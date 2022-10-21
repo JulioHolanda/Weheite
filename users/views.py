@@ -1,13 +1,15 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render, get_object_or_404
+from django.views.generic.edit import CreateView
 
-from .forms import CreateInForum, CreateInReply, SignupForm
-from .models import Forum
+from .forms import CreateInForum, SignupForm  # , CreateInReply,
+from .models import Forum, Reply
 
 
 def home(request):
-    discussao=Forum.objects.all().order_by('-id') # Collect all records from table 
+    discussao = Forum.objects.all().order_by(
+        '-id')  # Collect all records from table
     return render(request, 'users/home.html', {'discussao': discussao})
 
 
@@ -31,7 +33,6 @@ def signup(request):
     return render(request, 'users/signup.html', context)
 
 
-
 def criarForum(request):
     if request.method == 'POST':
         form = CreateInForum(request.POST)
@@ -49,27 +50,38 @@ def criarForum(request):
     context = {'form': form}
     return render(request, 'users/formulario.html', context)
 
+
 def detailForum(request, forum_id):
-    forum = get_object_or_404(Forum, pk = forum_id)
+    forum = get_object_or_404(Forum, pk=forum_id)
 
-    return render(request, "users/detailForum.html", {'forum':forum})
+    return render(request, "users/detailForum.html", {'forum': forum})
 
-def replyForum(request, forum_id):
-    if request.method == 'POST':
-        form = CreateInReply(request.POST)
-        if form.is_valid():
-            reply = form.save()
-            reply.refresh_from_db()
-            reply.autor = request.user
-            reply.body = form.cleaned_data.get('body')
-            reply.forum = request.title
-            reply.save()
 
-            forum = get_object_or_404(Forum, pk = forum_id)
-            return render(request, "users/detailForum.html", {'forum':forum})
-        
-    else:
-        form = CreateInReply()
+class replyForum(CreateView):
+    model = Reply
+    fields = ['body']
 
-    context = {'form': form}
-    return render(request, 'users/replyForum.html', context)
+    def form_valid(self, form):
+        form.instance.forum_id = self.kwargs.get("forum_id")
+        return super().form_valid(form)
+
+# def replyForum(request, forum_id):
+#     if request.method == 'POST':
+#         form = CreateInReply(request.POST)
+#         if form.is_valid():
+#             reply = form.save()
+#             reply.refresh_from_db()
+#             reply.autor = request.user
+#             reply.body = form.cleaned_data.get('body')
+#             print(forum_id)
+#             reply.forum = forum_id
+#             reply.save()
+
+#             forum = get_object_or_404(Forum, pk = forum_id)
+#             return render(request, "users/detailForum.html", {'forum':forum})
+
+#     else:
+#         form = CreateInReply()
+
+#     context = {'form': form}
+#     return render(request, 'users/replyForum.html', context)

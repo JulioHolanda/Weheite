@@ -25,12 +25,12 @@ class CreateInForum(ModelForm):
         model = Forum
         fields = ['title', 'body']
 
-class CreateInReply(ModelForm):
-    body = forms.CharField(max_length=10000, required=True, help_text='Required.')
+# class CreateInReply(ModelForm):
+#     body = forms.CharField(max_length=10000, required=True, help_text='Required.')
 
-    class Meta:
-        model = Reply
-        fields = ['body',]
+#     class Meta:
+#         model = Reply
+#         fields = ['body',]
 
 
 # class CreateInDiscussion(ModelForm):
