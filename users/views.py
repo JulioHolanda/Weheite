@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic.edit import CreateView
+from django.urls import reverse
 
 from .forms import CreateInForum, SignupForm  # , CreateInReply,
 from .models import Forum, Reply
@@ -60,10 +61,23 @@ def detailForum(request, forum_id):
 class replyForum(CreateView):
     model = Reply
     fields = ['body']
+    template_name = 'users/reply_form.html'
 
     def form_valid(self, form):
-        form.instance.forum_id = self.kwargs.get("forum_id")
+        form.instance.autor = self.request.user
+        form.instance.forum = Forum.objects.get(pk=self.kwargs['forum_id'])
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={'forum_id': self.kwargs['forum_id']})
+
+# class replyForum(CreateView):
+#     model = Reply
+#     fields = ['body']
+
+#     def form_valid(self, form):
+#         form.instance.forum_id = self.kwargs.get("forum_id")
+#         return super().form_valid(form)
 
 # def replyForum(request, forum_id):
 #     if request.method == 'POST':

@@ -35,5 +35,3 @@ class Reply(models.Model):
 
     def __str__(self):
         return self.body
-
-    
