@@ -1,1 +1,1 @@
-web gunicorn dj_login_system.wsgi:aplication   
+web gunicorn qlqrcoisa.wsgi:aplication   
