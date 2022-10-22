@@ -1,1 +1,1 @@
-web gunicorn weheite.wsgi: aplication --log-file -
+web gunicorn we-heite.wsgi: aplication --log-file -
