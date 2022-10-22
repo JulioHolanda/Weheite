@@ -71,6 +71,16 @@ class replyForum(CreateView):
     def get_success_url(self):
         return reverse('detail', kwargs={'forum_id': self.kwargs['forum_id']})
 
+#def likes_count(request):
+   # responseid=request.POST.get("id")
+   # r=Reply.objects.get(pk=responseid)
+   # if like:
+   #     r.likes+=1
+   # else:
+   #     r.likes-=1
+   # r.save
+   # return True
+
 # class replyForum(CreateView):
 #     model = Reply
 #     fields = ['body']
