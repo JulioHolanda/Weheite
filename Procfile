@@ -1,1 +1,1 @@
-web gunicorn we-heite.wsgi:aplication 
+web gunicorn dj_login_system.wsgi:aplication   
