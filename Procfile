@@ -1,1 +1,1 @@
-web gunicorn weheit.wsgi: aplication --log-file -
+web gunicorn weheite.wsgi: aplication --log-file -
