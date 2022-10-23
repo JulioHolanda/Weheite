@@ -9,8 +9,8 @@ from .models import Forum, Reply
 
 
 def home(request):
-    discussao = Forum.objects.all().order_by(
-        '-id')  # Collect all records from table
+    discussao = Forum.objects.all().order_by('-id')  # Collect all records from table
+
     return render(request, 'users/home.html', {'discussao': discussao})
 
 
@@ -54,8 +54,9 @@ def criarForum(request):
 
 def detailForum(request, forum_id):
     forum = get_object_or_404(Forum, pk=forum_id)
+    replys = Reply.objects.filter(forum=forum_id).order_by('-id')  # Collect all records from table
 
-    return render(request, "users/detailForum.html", {'forum': forum})
+    return render(request, "users/detailForum.html", {'forum': forum, 'replys': replys})
 
 
 class replyForum(CreateView):
