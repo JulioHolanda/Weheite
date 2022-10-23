@@ -9,9 +9,16 @@ from .models import Forum, Reply
 
 
 def home(request):
-    discussao = Forum.objects.all().order_by(
-        '-id')  # Collect all records from table
-    return render(request, 'users/home.html', {'discussao': discussao})
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    discussao = Forum.objects.filter(title__icontains=q)
+
+    # discussao = Forum.objects.all().order_by(
+    #     '-id')  # Collect all records from table
+
+
+    context = {'discussao': discussao}
+    return render(request, 'users/home.html', context )
 
 
 def signup(request):
@@ -54,8 +61,9 @@ def criarForum(request):
 
 def detailForum(request, forum_id):
     forum = get_object_or_404(Forum, pk=forum_id)
+    replys = Reply.objects.filter(forum=forum_id).order_by('-id')  # Collect all records from table
 
-    return render(request, "users/detailForum.html", {'forum': forum})
+    return render(request, "users/detailForum.html", {'forum': forum, 'replys': replys})
 
 
 class replyForum(CreateView):
@@ -70,16 +78,6 @@ class replyForum(CreateView):
 
     def get_success_url(self):
         return reverse('detail', kwargs={'forum_id': self.kwargs['forum_id']})
-
-#def likes_count(request):
-   # responseid=request.POST.get("id")
-   # r=Reply.objects.get(pk=responseid)
-   # if like:
-   #     r.likes+=1
-   # else:
-   #     r.likes-=1
-   # r.save
-   # return True
 
 # class replyForum(CreateView):
 #     model = Reply
