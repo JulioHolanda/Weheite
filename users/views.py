@@ -9,9 +9,16 @@ from .models import Forum, Reply
 
 
 def home(request):
-    discussao = Forum.objects.all().order_by('-id')  # Collect all records from table
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
 
-    return render(request, 'users/home.html', {'discussao': discussao})
+    discussao = Forum.objects.filter(title__icontains=q)
+
+    # discussao = Forum.objects.all().order_by(
+    #     '-id')  # Collect all records from table
+
+
+    context = {'discussao': discussao}
+    return render(request, 'users/home.html', context )
 
 
 def signup(request):

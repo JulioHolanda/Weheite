@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models

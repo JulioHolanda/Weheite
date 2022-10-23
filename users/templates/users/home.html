@@ -1,202 +1,235 @@
 {% extends 'users/base.html' %}
 
 {% block style %}
-<style>
-    :root {
-        font-size: 14px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+<!-- <style>
+    .homecontainer {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
     }
+</style> -->
 
-    body {
-        background-color: rgb(197, 193, 193);
-    }
 
-    header {
-        position: fixed;
-        color: white;
-        height: 60px;
-        background-color: rgba(122, 116, 116, 0.8);
-        display: flex;
-        justify-content: space-between;
-        width: 1125px;
-        border-bottom: grey;
-        border-radius: 5px;
-        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    }
+<div class="home-container">
 
-    h1 {
-        padding-bottom: 10px;
-    }
+    
+        
+        <style>
+            :root {
+                font-size: 14px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+    
+            body {
+                background-color: rgb(197, 193, 193);
+            }
+    
+            header {
+                position: fixed;
+                color: white;
+                height: 60px;
+                background-color: rgba(122, 116, 116, 0.8);
+                display: flex;
+                justify-content: space-between;
+                width: 1125px;
+                border-bottom: grey;
+                border-radius: 5px;
+                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+            }
+    
+            h1 {
+                padding-bottom: 10px;
+            }
+    
+            input {
+                background-color: lightcoral;
+                height: fit-content;
+                width: fit-content;
+                padding: 6px;
+                color: #fff;
+                font-weight: bolder;
+                text-decoration: none;
+                border-radius: 8px;
+            }
+    
+            a {
+                text-decoration: none;
+            }
+    
+            .a5 {
+                color: black;
+            }
+    
+            a:hover {
+                box-shadow: 0 0 4px #fff;
+                text-decoration: none;
+                color: #494545;
+            }
+    
+            .BoxAutor {
+                width: fit-content;
+                height: 25px;
+                background: none;
+                padding: 3px;
+                font-size: 15px;
+            }
+    
+            .BoxTitle {
+                width: 900px;
+                text-align: center;
+                background: none;
+                border: 2px solid;
+                padding: 3px;
+                font-size: 20px;
+            }
+    
+            .BoxBody {
+                margin-top: 10px;
+                width: 900px;
+                height: 190px;
+                background: none;
+                border: 2px solid;
+                padding: 3px;
+                font-size: 1rem;
+            }
+    
+            .a3 {
+                text-decoration: none;
+                background-color: lightcoral;
+                height: fit-content;
+                width: fit-content;
+                padding: 6px;
+                color: #fff;
+                font-weight: bolder;
+                text-decoration: none;
+                border-radius: 8px;
+                margin-left: 10px;
+                margin-top: 20px;
+            }
+    
+            .a2 {
+                text-decoration: none;
+                background-color: lightcoral;
+                height: fit-content;
+                width: fit-content;
+                padding: 6px;
+                color: #fff;
+                font-weight: bolder;
+                text-decoration: none;
+                border-radius: 8px;
+                margin-right: 10px;
+                margin-top: 20px;
+            }
+    
+            .TextBody {
+                word-wrap: break-word;
+    
+            }
+    
+            .not-logged {
+                height: 80vh;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            h2 {
+                font-size: 100px;
+            }
+    
+            .a1 {
+                text-decoration: none;
+                background-color: lightcoral;
+                height: fit-content;
+                width: fit-content;
+                padding: 6px;
+                color: #fff;
+                font-weight: bolder;
+                text-decoration: none;
+                border-radius: 8px;
+                padding: 10px
+            }
+    
+            .a4 {
+                text-decoration: none;
+                background-color: lightcoral;
+                height: fit-content;
+                width: fit-content;
+                padding: 6px;
+                color: #fff;
+                font-weight: bolder;
+                text-decoration: none;
+                border-radius: 8px;
+                padding: 10px
+            }
+        </style>
+        {% endblock style %}
+    
+        {% block content %}
+        {% if user.is_authenticated %}
+        
+        <header>
+            <a class="a3" href="{% url 'forum' %} ">Criar</a>
+            <h1>Weheite</h1>
+            <a class="a2" href="{% url 'logout' %} ">Logout</a>
+        </header>
+        
+        <br>
+        <br>
+        <div>
+            <h3>Browse Topics</h3>
+            <hr>
+    
+            <form method="GET" action="{% url 'home' %}">
+                <input type="text" name="q" placeholder="Search Discussions"/>
+            </form>
+            
+            <hr>
+    
+        <div>
+        <br>
+        
+        {% for posts in discussao %}
+        <div class="BoxAutor">
+            <p><b><i>@{{posts.autor}}</i></b></p>
+        </div>
+        <div class="BoxTitle">
+            <a class="a5" href="{{posts.id}}/detailForum/">
+                <p><b>{{posts.title}}</b></p>
+            </a>
+        </div>
+        <div class="BoxBody">
+            <p class="TextBody">{{posts.body}}</p>
+        </div>
+        <br>
+        {% endfor %}
+    
+        {% comment %}
+        {% for i in forum %}
+        <div class="forum">
+            <h2>{{ i.title }}</h2>
+            <p>{{ i.description }}</p>
+            <p>{{ i.created_at }}</p>
+            <a class="a3" href="{% url 'forum' i.id %} ">Editar</a>
+            <a class="a3" href="{% url 'forum' i.id %} ">Deletar</a>
+        </div>
+        {% endfor %}
+        {% endcomment %}
+    
+        {% else %}
+        <div class="not-logged">
+            <h2>Weheite</h2>
+            <div>
+                <a class="a1" href="{% url  'signup' %}">Sign Up</a>
+                <a class="a4" href="{% url 'login' %}">Login</a>
+            </div>
+        </div>
+        {% endif %}
+        {% endblock content %}
 
-    input {
-        background-color: lightcoral;
-        height: fit-content;
-        width: fit-content;
-        padding: 6px;
-        color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        border-radius: 8px;
-    }
 
-    a {
-        text-decoration: none;
-    }
-
-    .a5 {
-        color: black;
-    }
-
-    a:hover {
-        box-shadow: 0 0 4px #fff;
-        text-decoration: none;
-        color: #494545;
-    }
-
-    .BoxAutor {
-        width: fit-content;
-        height: 25px;
-        background: none;
-        padding: 3px;
-        font-size: 15px;
-    }
-
-    .BoxTitle {
-        width: 900px;
-        text-align: center;
-        background: none;
-        border: 2px solid;
-        padding: 3px;
-        font-size: 20px;
-    }
-
-    .BoxBody {
-        margin-top: 10px;
-        width: 900px;
-        height: 190px;
-        background: none;
-        border: 2px solid;
-        padding: 3px;
-        font-size: 1rem;
-    }
-
-    .a3 {
-        text-decoration: none;
-        background-color: lightcoral;
-        height: fit-content;
-        width: fit-content;
-        padding: 6px;
-        color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        border-radius: 8px;
-        margin-left: 10px;
-        margin-top: 20px;
-    }
-
-    .a2 {
-        text-decoration: none;
-        background-color: lightcoral;
-        height: fit-content;
-        width: fit-content;
-        padding: 6px;
-        color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        border-radius: 8px;
-        margin-right: 10px;
-        margin-top: 20px;
-    }
-
-    .TextBody {
-        word-wrap: break-word;
-
-    }
-
-    .not-logged {
-        height: 80vh;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    h2 {
-        font-size: 100px;
-    }
-
-    .a1 {
-        text-decoration: none;
-        background-color: lightcoral;
-        height: fit-content;
-        width: fit-content;
-        padding: 6px;
-        color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        border-radius: 8px;
-        padding: 10px
-    }
-
-    .a4 {
-        text-decoration: none;
-        background-color: lightcoral;
-        height: fit-content;
-        width: fit-content;
-        padding: 6px;
-        color: #fff;
-        font-weight: bolder;
-        text-decoration: none;
-        border-radius: 8px;
-        padding: 10px
-    }
-</style>
-{% endblock style %}
-
-{% block content %}
-{% if user.is_authenticated %}
-<header>
-    <a class="a3" href="{% url 'forum' %} ">Criar</a>
-    <h1>Weheite</h1>
-    <a class="a2" href="{% url 'logout' %} ">Logout</a>
-</header>
-<br>
-<br>
-<br>
-{% for posts in discussao %}
-<div class="BoxAutor">
-    <p><b><i>@{{posts.autor}}</i></b></p>
-</div>
-<div class="BoxTitle">
-    <a class="a5" href="{{posts.id}}/detailForum/">
-        <p><b>{{posts.title}}</b></p>
-    </a>
-</div>
-<div class="BoxBody">
-    <p class="TextBody">{{posts.body}}</p>
-</div>
-<br>
-{% endfor %}
-
-{% comment %}
-{% for i in forum %}
-<div class="forum">
-    <h2>{{ i.title }}</h2>
-    <p>{{ i.description }}</p>
-    <p>{{ i.created_at }}</p>
-    <a class="a3" href="{% url 'forum' i.id %} ">Editar</a>
-    <a class="a3" href="{% url 'forum' i.id %} ">Deletar</a>
-</div>
-{% endfor %}
-{% endcomment %}
-
-{% else %}
-<div class="not-logged">
-    <h2>Weheite</h2>
-    <div>
-        <a class="a1" href="{% url  'signup' %}">Sign Up</a>
-        <a class="a4" href="{% url 'login' %}">Login</a>
     </div>
+
+    
 </div>
-{% endif %}
-{% endblock content %}
