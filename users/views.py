@@ -11,7 +11,7 @@ from .models import Forum, Reply
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
-    discussao = Forum.objects.filter(title__icontains=q)
+    discussao = Forum.objects.filter(title__icontains=q).order_by("-id")
 
     # discussao = Forum.objects.all().order_by(
     #     '-id')  # Collect all records from table
