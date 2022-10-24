@@ -1,5 +1,73 @@
 {% extends 'users/base.html' %}
+{% block style %}
+<style>
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #ebebeb;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        width: 70vw;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    input {
+        background: none;
+        border-radius: 5px;
+        width: 400px;
+    }
+
+    .buttons-position {
+        display: flex;
+        justify-content: space-between;
+        width: 400px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    button {
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border: none;
+        border-radius: 8px;
+        align-self: center;
+    }
+
+    #id_body {
+        height: 200px;
+        text-align: start;
+        text-justify: start;
+        word-wrap: break-word;
+    }
+
+    label {
+        font-size: 30px;
+    }
+</style>
+{% endblock style %}
 {% block content %}
+<div class="main-content">
+    <h1>
+        Weheite
+    </h1>
     <form method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -10,10 +78,14 @@
             <small style="color: grey">{{ field.help_text }}</small>
             {% endif %}
             {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-            {% endfor %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
         </p>
         {% endfor %}
-        <button type="submit">Enviar</button>
+        <div class="buttons-position">
+            <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
+            <button type="submit">Enviar</button>
+        </div>
     </form>
+</div>
 {% endblock content %}

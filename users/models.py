@@ -22,7 +22,7 @@ def update_user_profile(sender, instance, created, **kwargs):
 class Forum(models.Model):
     autor = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     title = models.TextField(max_length=255)
-    body = models.TextField(max_length=10000)
+    body = models.TextField(max_length=999)
 
     def __str__(self):
         return self.title
