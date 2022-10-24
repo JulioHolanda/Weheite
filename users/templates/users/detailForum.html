@@ -5,24 +5,126 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a560e25e8e.js" crossorigin="anonymous"></script>
     <title>Document</title>
     <header>
 
         <h1>Weheite</h1>
-        <a class="a3" href="reply_form/ ">Responder</a> <a class="a2" href="{% url 'home' %} ">Home</a>
     </header>
 </head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 1200px;
+        height: fit-content;
+        background-color: #ebebeb;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .discussion-box {
+        margin-top: 0px;
+        padding: 5px;
+        padding-top: 0px;
+        width: 1000px;
+        border: 1px solid;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    h4 {
+        margin: 0px;
+        padding: 0px;
+        width: 1000px;
+        display: flex;
+        justify-content: start;
+    }
+
+    .button-answer-position {
+        display: flex;
+        width: 1000px;
+        display: flex;
+        justify-content: end;
+    }
+
+    .answer-box {
+        margin-top: 0px;
+        padding-top: 0px;
+        padding: 5px;
+        width: 1000px;
+        border: 1px solid;
+        margin-top: 20px;
+        border-radius: 5px;
+    }
+
+    .position-back-button {
+        display: flex;
+        width: 1000px;
+        justify-content: start;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+    h5 {
+        display: flex;
+        width: 1000px;
+        justify-content: end;
+        font-size: 20px;
+    }
+
+    .a3 {
+        font-size: 30px;
+        color: black;
+    }
+
+    .TextBody {
+        word-wrap: break-word;
+    }
+</style>
 
 <body>
-    <p>{{forum.autor}}</p>
-    <p>{{forum.title}}</p>
-    <p>{{forum.body}}</p>
-    <h3>RESPOSTAS</h3>
-    {% for reply in replys %}
-    <p>{{reply.autor}}</p>
-    <p>{{reply.body}}</p>
-    <p>{{reply.likes}}</p>
-    {% endfor %}
+    <div class="main-content">
+        <h4>@{{forum.autor}}</h4>
+        <div class="discussion-box">
+            <h2><b>{{forum.title}}</b></h2>
+            <p>{{forum.body}}</p>
+        </div>
+        <div class="button-answer-position">
+            <a class="a3" href="reply_form/ "><i class="fa-solid fa-comment"></i></a>
+        </div>
+        {% if replys %}
+        <h3>RESPOSTAS</h3>
+        {% for reply in replys %}
+        <h4><b>@{{reply.autor}}</b></h4>
+        <div class="answer-box">
+            <p class="TextBody">{{reply.body}}</p>
+        </div>
+        <p>{{reply.likes}} Likes</p>
+        {% endfor %}
+        {%else%}
+        <h3>Ainda não tem nenhuma resposta</h3>
+        {% endif %}
+        <div class="position-back-button">
+            <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+    </div>
 </body>
 
 </html>

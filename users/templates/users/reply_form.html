@@ -1,6 +1,73 @@
 {% extends 'users/base.html' %}
+{% block style %}
+<style>
+    body {
+        background-color: #ebebeb;
+    }
+
+    textarea {
+        resize: none;
+        background: none;
+        width: 400px;
+        border-radius: 10px;
+        height: 250px;
+    }
+
+    h2 {
+        font-size: 75px;
+    }
+
+    .main-content {
+        margin-top: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 1200px;
+        height: fit-content;
+        background-color: #ebebeb;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .buttons-position {
+        display: flex;
+        justify-content: space-between;
+        width: 400px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    button {
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border: none;
+        border-radius: 8px;
+        align-self: center;
+    }
+
+    p {
+        font-size: 25px;
+    }
+</style>
+{% endblock style %}
+
 {% block content %}
-    <form  action='#' method="post">
+<div class="main-content">
+    <header>
+        <h2>
+            Resposta da Discussão
+        </h2>
+    </header>
+    <form action='#' method="post">
         {% csrf_token %}
         {% for field in form %}
         <p>
@@ -10,10 +77,14 @@
             <small style="color: grey">{{ field.help_text }}</small>
             {% endif %}
             {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-            {% endfor %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
         </p>
         {% endfor %}
-        <button type="submit">Enviar</button>
+        <div class="buttons-position">
+            <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
+            <button type="submit">Enviar</button>
+        </div>
     </form>
+</div>
 {% endblock content %}
