@@ -7,17 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/a560e25e8e.js" crossorigin="anonymous"></script>
     <title>Document</title>
-    <header>
-
-        <h1>Weheite</h1>
-    </header>
 </head>
 <style>
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        background-color: #ebebeb;
     }
 
     .main-content {
@@ -27,7 +28,6 @@
         justify-content: space-between;
         width: 1200px;
         height: fit-content;
-        background-color: #ebebeb;
         padding: 5px;
         border-radius: 5px;
     }
@@ -91,15 +91,55 @@
 
     .a3 {
         font-size: 30px;
-        color: black;
+        color: #ebebeb;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #000;
     }
 
     .TextBody {
         word-wrap: break-word;
     }
+
+    .like-function {
+        display: flex;
+        justify-content: space-between;
+        width: 1000px;
+    }
+
+    .like {
+        font-size: 30px;
+        text-decoration: none;
+        background: none;
+        border: none;
+        color: #ebebeb;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #000;
+    }
+
+    .deslike {
+        font-size: 30px;
+        text-decoration: none;
+        background: none;
+        border: none;
+        color: cyan;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #000;
+    }
+
+    strong {
+        font-size: 20px;
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+        margin-left: 30px;
+    }
 </style>
 
 <body>
+    <header>
+
+        <h1>Weheite</h1>
+    </header>
     <div class="main-content">
         <h4>@{{forum.autor}}</h4>
         <div class="discussion-box">
@@ -116,7 +156,23 @@
         <div class="answer-box">
             <p class="TextBody">{{reply.body}}</p>
         </div>
-        <p>{{reply.likes}} Likes</p>
+        <div class="like-function">
+            {% if reply.liked.all.count == 1 %}
+            <strong>{{ reply.liked.all.count }} like</strong>
+            {%else%}
+            <strong>{{ reply.liked.all.count }} likes</strong>
+            {%endif%}
+            <form action="{% url 'like' forum_id=forum.id %}" method='POST' class="ui form">
+                {% csrf_token %}
+                <input type='hidden' name='reply_id' value="{{reply.id}}" />
+                <input type='hidden' name='user' value="{{user}}" />
+                {% if user not in reply.liked.all %}
+                <button class="like" type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
+                {% else %}
+                <button class="deslike" type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
+                {% endif %}
+            </form>
+        </div>
         {% endfor %}
         {%else%}
         <h3>Ainda não tem nenhuma resposta</h3>

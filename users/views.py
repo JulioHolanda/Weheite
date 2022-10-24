@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import redirect, render, get_object_or_404
-from django.views.generic.edit import CreateView
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.views.generic.edit import CreateView
 
 from .forms import CreateInForum, SignupForm  # , CreateInReply,
-from .models import Forum, Reply
+from .models import Forum, Like, Reply
 
 
 def home(request):
@@ -78,6 +78,26 @@ class replyForum(CreateView):
 
     def get_success_url(self):
         return reverse('detail', kwargs={'forum_id': self.kwargs['forum_id']})
+    
+def like_reply(request, forum_id):
+    user = request.user
+    if request.method == 'POST':
+        reply_id = request.POST.get('reply_id')
+        reply_obj = Reply.objects.get(id=reply_id)
+
+        if user in reply_obj.liked.all():
+            reply_obj.liked.remove(user)
+        else:
+            reply_obj.liked.add(user)
+
+        like, created = Like.objects.get_or_create(autor=user, reply_id=reply_id) 
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+    return redirect('detail', forum_id=forum_id)
 
 # class replyForum(CreateView):
 #     model = Reply
