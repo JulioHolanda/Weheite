@@ -29,4 +29,5 @@ urlpatterns = [
     path('criarForum/', user_views.criarForum, name='forum'),
     path('<int:forum_id>/detailForum/', user_views.detailForum, name="detail"),
     path('<int:forum_id>/detailForum/reply_form/', user_views.replyForum.as_view(), name="reply"),
+    path('<int:forum_id>/detailForum/like/', user_views.like_reply, name="like"),
 ]

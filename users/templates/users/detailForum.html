@@ -22,6 +22,18 @@
     <p>{{reply.autor}}</p>
     <p>{{reply.body}}</p>
     <p>{{reply.likes}}</p>
+    <p></p>
+    <form action="{% url 'like' forum_id=forum.id %}" method='POST' class="ui form">
+        {% csrf_token %}
+        <input type='hidden' name='reply_id' value="{{reply.id}}" />
+        <input type='hidden' name='user' value="{{user}}" />
+            {% if user not in reply.liked.all %} 
+                <button class="ui button positive" type="submit">Like</button>
+            {% else %}
+                <button class="ui button negative" type="submit">Unlike</button>
+            {% endif %}
+    </form>
+    <strong>{{ reply.liked.all.count }} likes</strong>
     {% endfor %}
 </body>
 

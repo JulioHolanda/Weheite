@@ -1,4 +1,5 @@
-from unittest.util import _MAX_LENGTH
+from email.policy import default
+from secrets import choice
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
@@ -29,10 +30,27 @@ class Forum(models.Model):
         return self.title
 
 class Reply(models.Model):
-    autor = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    autor = models.ForeignKey(User, on_delete=models.SET_NULL,null=True, related_name='autor')
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
     body = models.TextField(max_length=999)
-    likes = models.IntegerField(default=0)
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
         return self.body
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+
+class Like(models.Model):
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.reply)
