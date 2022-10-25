@@ -75,7 +75,7 @@
             height: 25px;
             background: none;
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
             padding: 3px;
             font-size: 15px;
         }
@@ -227,6 +227,11 @@
     <div class="footer-content">
         <div class="BoxAutor">
             <p><b><i>@{{posts.autor}}</i></b></p>
+            {% if posts.autor in posts.respondida.all %}
+            <div class="statusforum" style="color: green;">Resolvida<i class="fa-solid fa-check"></i></div>
+            {% else %}
+            <div class="statusforum" style="color: red;">Não Resolvida <i class="fa-regular fa-circle-xmark"></i></div>
+            {%endif%}
         </div>
         <div class="BoxContent">
             <a class="a5" href="{{posts.id}}/detailForum/">

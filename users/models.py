@@ -22,7 +22,8 @@ def update_user_profile(sender, instance, created, **kwargs):
 class Forum(models.Model):
     autor = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     title = models.TextField(max_length=255)
-    body = models.TextField(max_length=999)
+    body = models.TextField(max_length=9999)
+    respondida = models.ManyToManyField(User, default=None, blank=True, related_name='respondida')
 
     def __str__(self):
         return self.title
@@ -30,7 +31,7 @@ class Forum(models.Model):
 class Reply(models.Model):
     autor = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
-    body = models.TextField(max_length=999)
+    body = models.TextField(max_length=9999)
     liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
@@ -45,6 +46,11 @@ LIKE_CHOICES = (
     ('Unlike', 'Unlike'),
 ) 
 
+DONE_CHOICES = (
+    ('Done', 'Done'),
+    ('Undone', 'Undone'),
+)
+
 class Like(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     reply = models.ForeignKey(Reply, on_delete=models.CASCADE)
@@ -52,4 +58,12 @@ class Like(models.Model):
 
     def str(self):
         return str(self.reply)
+
+class Forum_done(models.Model):
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    value = models.CharField(choices=DONE_CHOICES, default='Undone', max_length=10)
+
+    def str(self):
+        return str(self.forum)
 

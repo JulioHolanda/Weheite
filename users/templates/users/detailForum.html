@@ -54,11 +54,10 @@
         justify-content: start;
     }
 
-    .button-answer-position {
+    .below-disc {
         display: flex;
         width: 1000px;
-        display: flex;
-        justify-content: end;
+        justify-content: space-between;
     }
 
     .answer-box {
@@ -92,6 +91,7 @@
     .a3 {
         font-size: 30px;
         color: #ebebeb;
+        text-justify: end;
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: #000;
     }
@@ -133,6 +133,22 @@
         justify-content: center;
         margin-left: 30px;
     }
+
+    .statusforum {
+        font-size: 20px;
+    }
+
+    button {
+        margin-top: 10px;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border: none;
+        border-radius: 8px;
+    }
 </style>
 
 <body>
@@ -146,7 +162,25 @@
             <h2><b>{{forum.title}}</b></h2>
             <p>{{forum.body}}</p>
         </div>
-        <div class="button-answer-position">
+        <div class="below-disc">
+            {%if user.id == forum.autor_id %}
+            <form action="{% url 'done' forum_id=forum.id %}" method='POST' class="ui form">
+                {% csrf_token %}
+                <input type='hidden' name='forum_id' value="{{forum.id}}" />
+                <input type='hidden' name='user' value="{{user}}" />
+                {% if user not in forum.respondida.all %}
+                <button class="undone" type="submit" style="background-color: red;">Marcar como Resolvida</button>
+                {% else %}
+                <button class="done" type="submit" style="background-color: green;">Resolvida</button>
+                {% endif %}
+            </form>
+            {% else %}
+            {% if forum.autor in forum.respondida.all %}
+            <div class="statusforum" style="color: green;">Resolvida<i class="fa-solid fa-check"></i></div>
+            {% else %}
+            <div class="statusforum" style="color: red;">Não Resolvida <i class="fa-regular fa-circle-xmark"></i></div>
+            {%endif%}
+            {%endif%}
             <a class="a3" href="reply_form/ "><i class="fa-solid fa-comment"></i></a>
         </div>
         {% if replys %}

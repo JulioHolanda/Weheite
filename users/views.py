@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic.edit import CreateView
 
 from .forms import CreateInForum, SignupForm  # , CreateInReply,
-from .models import Forum, Like, Reply
+from .models import Forum, Forum_done, Like, Reply
 
 
 def home(request):
@@ -58,12 +58,12 @@ def criarForum(request):
     context = {'form': form}
     return render(request, 'users/formulario.html', context)
 
-
 def detailForum(request, forum_id):
     forum = get_object_or_404(Forum, pk=forum_id)
-    replys = Reply.objects.filter(forum=forum_id).order_by('-id')  # Collect all records from table
+    replys = Reply.objects.filter(forum=forum_id).order_by('-id')
+    user = request.user  # Collect all records from table
 
-    return render(request, "users/detailForum.html", {'forum': forum, 'replys': replys})
+    return render(request, "users/detailForum.html", {'forum': forum, 'replys': replys, 'user':user})
 
 
 class replyForum(CreateView):
@@ -97,6 +97,26 @@ def like_reply(request, forum_id):
                 like.value = 'Unlike'
             else:
                 like.value = 'Like'
+    return redirect('detail', forum_id=forum_id)
+
+def done_forum(request, forum_id):
+    user = request.user
+    if request.method == 'POST':
+        forum_id = request.POST.get('forum_id')
+        forum_obj = Forum.objects.get(id=forum_id)
+
+        if user in forum_obj.respondida.all():
+            forum_obj.respondida.remove(user)
+        else:
+            forum_obj.respondida.add(user)
+
+        forum , created = Forum_done.objects.get_or_create(autor=user, forum_id=forum_id) 
+
+        if not created:
+            if forum.value == 'Done':
+                forum.value = 'Undone'
+            else:
+                forum.value = 'Done'
     return redirect('detail', forum_id=forum_id)
 
 # class replyForum(CreateView):
