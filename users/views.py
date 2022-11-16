@@ -119,6 +119,9 @@ def done_forum(request, forum_id):
                 forum.value = 'Done'
     return redirect('detail', forum_id=forum_id)
 
+def profile(request):
+    return render(request, 'users/profile.html', {} )
+        
 # class replyForum(CreateView):
 #     model = Reply
 #     fields = ['body']
