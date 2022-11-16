@@ -204,7 +204,6 @@
 
     <header>
         <a class="a3" href="{% url 'forum' %} ">Criar</a>
-        <a class="a4" href="{% url 'myDiscs' %} ">Minhas discussões</a>
         <h1>Weheite</h1>
         <a class="a2" href="{% url 'logout' %} ">Logout</a>
     </header>
@@ -215,7 +214,7 @@
     <br>
     <br>
     <div class="search-bar-position">
-        <form method="GET" action="{% url 'home' %}">
+        <form method="GET" action="{% url 'myDiscs' %}">
             <div class="search-bar-disposition">
                 <input type="text" name="q" class="search-bar" placeholder="Search Discussions" />
                 <h6><i class="fa-solid fa-magnifying-glass"></i></h6>
@@ -225,23 +224,25 @@
     <br>
 
     {% for posts in discussao %}
-    <div class="footer-content">
-        <div class="BoxAutor">
-            <p><b><i>@{{posts.autor}}</i></b></p>
-            {% if posts.autor in posts.respondida.all %}
-            <div class="statusforum" style="color: green;">Resolvida<i class="fa-solid fa-check"></i></div>
-            {% else %}
-            <div class="statusforum" style="color: red;">Não Resolvida <i class="fa-regular fa-circle-xmark"></i></div>
-            {%endif%}
-        </div>
-        <div class="BoxContent">
-            <a class="a5" href="{{posts.id}}/detailForum/">
-                <p><b>{{posts.title}}</b></p>
-            </a>
-            <p class="TextBody">{{posts.body}}</p>
-        </div>
-        <br>
-    </div>
+        {%if user.id == posts.autor_id %}
+            <div class="footer-content">
+                <div class="BoxAutor">
+                    <p><b><i>@{{posts.autor}}</i></b></p>
+                    {% if posts.autor in posts.respondida.all %}
+                    <div class="statusforum" style="color: green;">Resolvida<i class="fa-solid fa-check"></i></div>
+                    {% else %}
+                    <div class="statusforum" style="color: red;">Não Resolvida <i class="fa-regular fa-circle-xmark"></i></div>
+                    {%endif%}
+                </div>
+                <div class="BoxContent">
+                    <a class="a5" href="{{posts.id}}/detailForum/">
+                        <p><b>{{posts.title}}</b></p>
+                    </a>
+                    <p class="TextBody">{{posts.body}}</p>
+                </div>
+                <br>
+            </div>
+        {%endif%}
     {% endfor %}
 
     {% comment %}

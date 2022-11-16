@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views.generic.edit import CreateView
 
 from .forms import CreateInForum, SignupForm  # , CreateInReply,
-from .models import Forum, Forum_done, Like, Reply
+from .models import Forum, Forum_done, Like, Profile, Reply
 
 
 def home(request):
@@ -121,6 +121,23 @@ def done_forum(request, forum_id):
 
 def profile(request):
     return render(request, 'users/profile.html', {} )
+
+def myDisc(request):
+    user = request.user
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    discussao = Forum.objects.filter(title__icontains=q).order_by("-id")
+
+    # discussao = Forum.objects.all().order_by(
+    #     '-id')  # Collect all records from table
+
+
+    context = {'discussao': discussao, 'user':user}
+    return render(request, 'users/myDiscs.html', context )
+
+
+
+
         
 # class replyForum(CreateView):
 #     model = Reply

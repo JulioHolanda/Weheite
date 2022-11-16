@@ -17,5 +17,6 @@ class ProfileViewTestCase(TestCase):
    def test_birth_date(self):
       response = self.client.get(reverse('profile'))
 
+   
 
 

@@ -32,4 +32,5 @@ urlpatterns = [
     path('<int:forum_id>/detailForum/like/', user_views.like_reply, name="like"),
     path('<int:forum_id>/detailForum/done/', user_views.done_forum, name="done"),
     path('profile/', user_views.profile, name="profile"),
+    path('myDiscussions/', user_views.myDisc, name='myDiscs'),
 ]
