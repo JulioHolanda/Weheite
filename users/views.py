@@ -3,9 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views.generic.edit import CreateView
-
+from django.contrib.auth.models import User
 from .forms import CreateInForum, SignupForm  # , CreateInReply,
-from .models import Forum, Forum_done, Like, Profile, Reply
+from .models import Forum, Forum_done, Like, Reply
 
 
 def home(request):
@@ -31,6 +31,7 @@ def signup(request):
             user.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            professor = form.cleaned_data.get('professor')            
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
@@ -119,8 +120,18 @@ def done_forum(request, forum_id):
                 forum.value = 'Done'
     return redirect('detail', forum_id=forum_id)
 
-def profile(request):
+def profile(request, user_id):
+    profile = get_object_or_404(User, pk=user_id)
+
     return render(request, 'users/profile.html', {} ) 
+
+
+def detailForum(request, forum_id):
+    forum = get_object_or_404(Forum, pk=forum_id)
+    replys = Reply.objects.filter(forum=forum_id).order_by('-id')
+    user = request.user  # Collect all records from table
+
+    return render(request, "users/detailForum.html", {'forum': forum, 'replys': replys, 'user':user})
 
 def myDisc(request):
     user = request.user
@@ -134,6 +145,8 @@ def myDisc(request):
 
     context = {'discussao': discussao, 'user':user}
     return render(request, 'users/myDiscs.html', context )
+
+
 
 
 

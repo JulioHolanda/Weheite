@@ -9,17 +9,28 @@ class UsersUrlsTeste(TestCase):
         self.assertEqual(url,'/profile/')
 
 
-class ProfileViewTestCase(TestCase):
+# class ProfileViewTestCase(TestCase):
+
+#    def test_template_profile(self):
+#         response = self.client.get(reverse("profile"))
+#         self.assertTemplateUsed(response,"users/profile.html")
+
+#    def test_status_200(self):
+#       response= self.client.get(reverse('profile'))
+#       self.assertEqual(response.status_code, 200)
+
+#    def test_birth_date(self):
+#       response = self.client.get(reverse('profile'))
+#       self.assertNotEqual(response, None)
+
+class myDiscViewTestCase(TestCase):
 
    def test_template_profile(self):
-        response = self.client.get(reverse("profile"))
-        self.assertTemplateUsed(response,"users/profile.html")
+        response = self.client.get(reverse("myDiscs"))
+        self.assertTemplateUsed(response,"users/myDiscs.html")
 
    def test_status_200(self):
-      response= self.client.get(reverse('profile'))
+      response= self.client.get(reverse('myDiscs'))
       self.assertEqual(response.status_code, 200)
-
-   def test_birth_date(self):
-      response = self.client.get(reverse('profile'))
 
    

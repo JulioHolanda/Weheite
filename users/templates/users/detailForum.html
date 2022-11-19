@@ -157,7 +157,12 @@
         <h1>Weheite</h1>
     </header>
     <div class="main-content">
-        <h4>@{{forum.autor}}</h4>
+        <h4>
+            @{{forum.autor}}
+            {% if forum.autor.professor %}
+            PROFESSOR
+            {% endif %}
+        </h4>
         <div class="discussion-box">
             <h2><b>{{forum.title}}</b></h2>
             <p>{{forum.body}}</p>
@@ -186,7 +191,13 @@
         {% if replys %}
         <h3>RESPOSTAS</h3>
         {% for reply in replys %}
-        <h4><b>@{{reply.autor}}</b></h4>
+        <h4>
+            <b>@{{reply.autor}}
+            {% if reply.autor.professor %}
+            PROFESSOR
+            {% endif %}
+            </b>
+        </h4>
         <div class="answer-box">
             <p class="TextBody">{{reply.body}}</p>
         </div>
