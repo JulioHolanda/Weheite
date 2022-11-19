@@ -158,7 +158,9 @@
     </header>
     <div class="main-content">
         <h4>
-            @{{forum.autor}}
+            <a href="/{{forum.autor_id}}/profile/">
+                @{{forum.autor}}
+            </a>
             {% if forum.autor.professor %}
             PROFESSOR
             {% endif %}
@@ -192,7 +194,9 @@
         <h3>RESPOSTAS</h3>
         {% for reply in replys %}
         <h4>
-            <b>@{{reply.autor}}
+            <a href="/{{reply.autor_id}}/profile/">
+                <b>@{{reply.autor}}
+            </a>
             {% if reply.autor.professor %}
             PROFESSOR
             {% endif %}

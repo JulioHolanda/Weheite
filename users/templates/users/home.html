@@ -227,7 +227,9 @@
     {% for posts in discussao %}
     <div class="footer-content">
         <div class="BoxAutor">
-            <p><b><i>@{{posts.autor}}</i></b></p>
+            <a href="{{posts.autor_id}}/profile/">
+                <p><b><i>@{{posts.autor}}</i></b></p>
+            </a>
             {% if posts.autor.professor %}
                 PROFESSOR
             {% endif %}

@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Username :{{profile.username}}</h1>
+    {% if profile.professor %}
+    Este usuário é um professor.
+{% endif %}
+    <p>Email: {{profile.email}}</p>
+    <p>Criou {{qtd_discussao}} discussões </p>
+    <p>Criou {{qtd_reply}} respostas </p>
+    <p>Conta criada em: {{profile.date_joined}}</p>
     
 </body>
 </html>

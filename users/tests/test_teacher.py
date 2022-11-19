@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 
 class ProfessorTest(TestCase):
@@ -13,5 +13,6 @@ class ProfessorTest(TestCase):
     def test_true_professor(self):
         a = User.objects.get(professor = 1)
         self.assertTrue(a)
+    
 
      

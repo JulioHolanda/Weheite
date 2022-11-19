@@ -18,6 +18,7 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
+
 from users import views as user_views
 
 urlpatterns = [
@@ -31,7 +32,7 @@ urlpatterns = [
     path('<int:forum_id>/detailForum/reply_form/', user_views.replyForum.as_view(), name="reply"),
     path('<int:forum_id>/detailForum/like/', user_views.like_reply, name="like"),
     path('<int:forum_id>/detailForum/done/', user_views.done_forum, name="done"),
-    path('profile/', user_views.profile, name="profile"),
+    path('<int:user_id>/profile/', user_views.profile, name="profile"),
     path('myDiscussions/', user_views.myDisc, name='myDiscs'),
     
 ]

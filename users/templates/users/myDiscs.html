@@ -227,7 +227,9 @@
         {%if user.id == posts.autor_id %}
             <div class="footer-content">
                 <div class="BoxAutor">
-                    <p><b><i>@{{posts.autor}}</i></b></p>
+                    <a href="/{{posts.autor_id}}/profile/">
+                        <p><b><i>@{{posts.autor}}</i></b></p>
+                    </a>
                     {% if posts.autor in posts.respondida.all %}
                     <div class="statusforum" style="color: green;">Resolvida<i class="fa-solid fa-check"></i></div>
                     {% else %}

@@ -122,16 +122,12 @@ def done_forum(request, forum_id):
 
 def profile(request, user_id):
     profile = get_object_or_404(User, pk=user_id)
+    discussao = Forum.objects.filter(autor_id = user_id).order_by("-id")
+    qtd_discussao = len(discussao)
+    reply = Reply.objects.filter(autor_id = user_id).order_by("-id")
+    qtd_reply = len(reply)
 
-    return render(request, 'users/profile.html', {} ) 
-
-
-def detailForum(request, forum_id):
-    forum = get_object_or_404(Forum, pk=forum_id)
-    replys = Reply.objects.filter(forum=forum_id).order_by('-id')
-    user = request.user  # Collect all records from table
-
-    return render(request, "users/detailForum.html", {'forum': forum, 'replys': replys, 'user':user})
+    return render(request, 'users/profile.html', {'profile' : profile, 'qtd_discussao' : qtd_discussao, 'qtd_reply' : qtd_reply}) 
 
 def myDisc(request):
     user = request.user
