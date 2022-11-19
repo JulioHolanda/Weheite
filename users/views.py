@@ -120,7 +120,7 @@ def done_forum(request, forum_id):
     return redirect('detail', forum_id=forum_id)
 
 def profile(request):
-    return render(request, 'users/profile.html', {} )
+    return render(request, 'users/profile.html', {} ) 
 
 def myDisc(request):
     user = request.user

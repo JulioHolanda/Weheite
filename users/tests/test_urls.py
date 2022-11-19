@@ -7,3 +7,11 @@ class UsersUrlsTeste(TestCase):
     def test_profile_urls_is_correct(self):
         url= reverse('profile')
         self.assertEqual(url,'/profile/')
+
+       
+
+
+
+
+
+
