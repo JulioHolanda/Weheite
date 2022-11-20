@@ -12,6 +12,12 @@
         justify-items: center;
     }
 
+    .main-content{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
     h2 {
         font-size: 100px;
     }
@@ -57,30 +63,37 @@
         display: flex;
         justify-content: start;
     }
+
+    #id_professor {
+        background: red;
+        color: red;
+    }
+
+
 </style>
 {% endblock style %}
 
 {% block content %}
-<div>
+<div class = "main-content">
     <h3 style="text-align: center;">Sign Up</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% if field.help_text %}
+                <small style="color: rgb(99, 92, 92)">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+                {% endfor %}
+            </p>
+        {% endfor %}
+        <div class="signup-buttons">
+            <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
+            <button type="submit">Criar conta</button>
+        </div>
+    </form>
 </div>
-<form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-    <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-        <small style="color: rgb(99, 92, 92)">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-    <p style="color: red">{{ error }}</p>
-    {% endfor %}
-    </p>
-    {% endfor %}
-    <div class="signup-buttons">
-        <a href="{% url 'home' %} "><i class="fa-solid fa-arrow-left"></i></a>
-        <button type="submit">Criar conta</button>
-    </div>
-</form>
 {% endblock content%}
