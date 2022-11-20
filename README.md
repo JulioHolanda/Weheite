@@ -31,8 +31,16 @@ As instruções a seguir pressupõem que você já possui o `python` e `git` pr�
 ```
 ## ✨ Funcionalidades
 
-bla bla bla
-
+- Criar uma nova discussão
+- Navegar pelas discussões 
+- Responder à uma discussão
+- Avaliar respostas 
+- Marcar discussões como resolvidas e não resolvidas 
+- Fazer uma busca título e/ou conteúdo de discussões
+- Navegar pelas próprias discussões 
+- Identificar um usuário como professor 
+- Mostrar perfil do usuário com quantidade de posts e de respostas 
+ 
 ## 😯 Como contribuir para o projeto
 
 1. Faça um **fork** do projeto.
