@@ -6,11 +6,10 @@ O Weheite consiste de um forum web como o objetivo de auxiliar os estudantes do 
 Essa aplicação foi desenvolvida como parte da atividade prática de Fundamentos de Desenvolvimento de Software.
 
 ### Tecnologias utilizadas:
-
-* Python
-* Django
-* Html
-* CSS
+* <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="python"/>  
+* <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" atl="Django"/>
+* <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="html5"/> 
+* <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="css3" /> 
 * SQL
 * [Jira]( https://weheite.atlassian.net/jira/software/projects/WEH/boards/1/roadmap?assignee=unassigned%2C62715a232db3080070243629&shared=&atlOrigin=eyJpIjoiMzhhOTViYjZlMDE2NDIwYmFiZTMxYmE1OWQxMzIwZGIiLCJwIjoiaiJ9)
 
