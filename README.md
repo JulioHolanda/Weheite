@@ -22,7 +22,7 @@ As instruções a seguir pressupõem que você já possui o `python` e `git` pr�
     # Entrar no diretório
     $ cd Weheite
     
-    #Instale os requerimentos
+    # Instale os requerimentos
     $ python -m pip install -r requirements.txt
     
     # Inicie o servidor
