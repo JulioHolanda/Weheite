@@ -6,15 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body {
+        align-items: center;
+    }
+
+    header {
+        position: fixed;
+        color: white;
+        height: 60px;
+        background-color: rgba(122, 116, 116, 1);
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        border-bottom: grey;
+        border-radius: 0px 0px 5px 5px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .a8 {
+        text-decoration: none;
+        color: white;
+    }
+
+    footer {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    h2 {
+        font-size: 100px;
+    }
+
+    p {
+        font-size: 50px;
+    }
+</style>
 <body>
-    <h1>Username :{{profile.username}}</h1>
-    {% if profile.professor %}
-    Este usuário é um professor.
-{% endif %}
-    <p>Email: {{profile.email}}</p>
-    <p>Criou {{qtd_discussao}} discussões </p>
-    <p>Criou {{qtd_reply}} respostas </p>
-    <p>Conta criada em: {{profile.date_joined}}</p>
+    <header>
+        <h1><a class="a8" href="{% url 'home' %} ">Weheite</a></h1>
+    </header>
+    <footer>
+        <h2>Perfil de {{profile.username}}</h2>
+        {% if profile.professor %}
+        <p>Este usuário é um professor.</p>
+    {% endif %}
+        <p>Email: {{profile.email}}</p>
+        <p>Criou {{qtd_discussao}} discussões </p>
+        <p>Criou {{qtd_reply}} respostas </p>
+        <p>Conta criada em: {{profile.date_joined}}</p>
+    </footer>
     
 </body>
 </html>
