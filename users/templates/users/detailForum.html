@@ -11,21 +11,22 @@
 <style>
     * {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0px;
+        padding: 0px;
     }
 
     body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
         background-color: #ebebeb;
     }
 
     .main-content {
+        margin-top: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
         width: 1200px;
         height: fit-content;
         padding: 5px;
@@ -47,9 +48,12 @@
     }
 
     h4 {
+        background-color: yellow;
+        width: fit-content;
+        height: fit-content;
+        font-size: 20px;
         margin: 0px;
         padding: 0px;
-        width: 1000px;
         display: flex;
         justify-content: start;
     }
@@ -98,6 +102,7 @@
 
     .TextBody {
         word-wrap: break-word;
+        padding-bottom: 40px;
     }
 
     .like-function {
@@ -149,22 +154,76 @@
         border: none;
         border-radius: 8px;
     }
+
+    .prof {
+        display: flex;
+        height: fit-content;
+        background-color: red;
+        width: 1000px;
+
+    }
+
+    h6{
+        background-color: blue;
+        font-size: 20px;
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+    }
+    .BoxAutor {
+        width: 1000px;
+        height: 25px;
+        background: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 3px;
+        font-size: 15px;
+    }
+    .autor {
+        font-size: 20px;
+    }
+
+    .professor {
+        justify-self: center;
+        font-size: 20px;
+    }
+
+    header {
+        position: fixed;
+        color: white;
+        height: 60px;
+        background-color: rgba(122, 116, 116, 1);
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        border-bottom: grey;
+        border-radius: 0px 0px 5px 5px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .a8 {
+        text-decoration: none;
+        color: white;
+    }
 </style>
 
 <body>
     <header>
-
-        <h1>Weheite</h1>
+        <h1><a class="a8" href="{% url 'home' %} ">Weheite</a></h1>
     </header>
     <div class="main-content">
-        <h4>
-            <a href="/{{forum.autor_id}}/profile/">
-                @{{forum.autor}}
+        <div class="BoxAutor">
+            <a href="{{forum.autor_id}}/profile/" class = "autor">
+                <p class="autor"><b><i>@{{forum.autor}}</i></b></p>
             </a>
             {% if forum.autor.professor %}
-            PROFESSOR
+                <p class="professor"><b>PROFESSOR</b></p>
             {% endif %}
-        </h4>
+        </div>
         <div class="discussion-box">
             <h2><b>{{forum.title}}</b></h2>
             <p>{{forum.body}}</p>
@@ -193,15 +252,14 @@
         {% if replys %}
         <h3>RESPOSTAS</h3>
         {% for reply in replys %}
-        <h4>
-            <a href="/{{reply.autor_id}}/profile/">
-                <b>@{{reply.autor}}
+        <div class="BoxAutor">
+            <a href="{{reply.autor_id}}/profile/" class = "autor">
+                <p class="autor"><b><i>@{{reply.autor}}</i></b></p>
             </a>
             {% if reply.autor.professor %}
-            PROFESSOR
+                <p class="professor"><b>PROFESSOR</b></p>
             {% endif %}
-            </b>
-        </h4>
+        </div>
         <div class="answer-box">
             <p class="TextBody">{{reply.body}}</p>
         </div>

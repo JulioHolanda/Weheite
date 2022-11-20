@@ -1,211 +1,241 @@
-{% extends 'users/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block style %}
-
-<!-- <style>
-    .homecontainer {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a560e25e8e.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<style>
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0px;
+        padding: 0px;
     }
-</style> -->
+    
+    :root {
+        font-size: 14px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    body {
+        background-color: #ebebeb;
+        width: 100vw;
+    }
 
-<div class="home-container">
+    header {
+        position: fixed;
+        color: white;
+        height: 60px;
+        background-color: rgba(122, 116, 116, 1);
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        border-bottom: grey;
+        border-radius: 0px 0px 5px 5px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
 
+    input {
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
+    }
 
+    a {
+        text-decoration: none;
+    }
 
-    <style>
-        * {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            font-size: 14px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    .a5 {
+        color: black;
+    }
 
-        body {
-            background-color: #ebebeb;
-        }
+    a:hover {
+        box-shadow: 0 0 4px #fff;
+        text-decoration: none;
+        color: #494545;
+    }
 
-        header {
-            position: fixed;
-            color: white;
-            height: 60px;
-            background-color: rgba(122, 116, 116, 0.8);
-            display: flex;
-            justify-content: space-between;
-            width: 1125px;
-            border-bottom: grey;
-            border-radius: 5px;
-            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-        }
+    .BoxAutor {
+        width: 900px;
+        height: 30px;
+        background: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 3px;
+        font-size: 15px;
+    }
 
-        h1 {
-            padding-bottom: 10px;
-        }
+    .BoxContent {
+        width: 900px;
+        text-align: center;
+        background: none;
+        border: 2px solid;
+        padding: 3px;
+        font-size: 20px;
+        border-radius: 10px;
+    }
 
-        input {
-            background-color: lightcoral;
-            height: fit-content;
-            width: fit-content;
-            padding: 6px;
-            color: #fff;
-            font-weight: bolder;
-            text-decoration: none;
-            border-radius: 8px;
-        }
+    .a3 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: 15px;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
 
-        a {
-            text-decoration: none;
-        }
+    .a2 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: 15px;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
 
-        .a5 {
-            color: black;
-        }
+    .TextBody {
+        word-wrap: break-word;
 
-        a:hover {
-            box-shadow: 0 0 4px #fff;
-            text-decoration: none;
-            color: #494545;
-        }
+    }
 
-        .BoxAutor {
-            width: 900px;
-            height: 25px;
-            background: none;
-            display: flex;
-            justify-content: space-between;
-            padding: 3px;
-            font-size: 15px;
-        }
+    .not-logged {
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .BoxContent {
-            width: 900px;
-            text-align: center;
-            background: none;
-            border: 2px solid;
-            padding: 3px;
-            font-size: 20px;
-            border-radius: 10px;
-        }
+    h2 {
+        font-size: 100px;
+    }
 
-        .a3 {
-            text-decoration: none;
-            background-color: lightcoral;
-            height: fit-content;
-            width: fit-content;
-            padding: 6px;
-            color: #fff;
-            font-weight: bolder;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-left: 10px;
-            margin-top: 20px;
-        }
+    .a1 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: fit-content;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        border-radius: 8px;
+        padding: 10px
+    }
 
-        .a2 {
-            text-decoration: none;
-            background-color: lightcoral;
-            height: fit-content;
-            width: fit-content;
-            padding: 6px;
-            color: #fff;
-            font-weight: bolder;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-right: 10px;
-            margin-top: 20px;
-        }
+    .a4 {
+        text-decoration: none;
+        background-color: lightcoral;
+        height: 15px;
+        width: fit-content;
+        padding: 6px;
+        color: #fff;
+        font-weight: bolder;
+        text-decoration: none;
+        align-self: center;
+        border-radius: 8px;
+        padding: 10px
+    }
 
-        .TextBody {
-            word-wrap: break-word;
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        }
+    h1 {
+        font-size: 50px;
+        margin-right: 160px;
+    }
 
-        .not-logged {
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h2 {
-            font-size: 100px;
-        }
-
-        .a1 {
-            text-decoration: none;
-            background-color: lightcoral;
-            height: fit-content;
-            width: fit-content;
-            padding: 6px;
-            color: #fff;
-            font-weight: bolder;
-            text-decoration: none;
-            border-radius: 8px;
-            padding: 10px
-        }
-
-        .a4 {
-            text-decoration: none;
-            background-color: lightcoral;
-            height: fit-content;
-            width: fit-content;
-            padding: 6px;
-            color: #fff;
-            font-weight: bolder;
-            text-decoration: none;
-            border-radius: 8px;
-            padding: 10px
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .search-bar {
-            background: none;
-            width: 800px;
-            border: none;
-            color: black;
-            padding-right: 60px;
-        }
+    .search-bar {
+        background: none;
+        width: 800px;
+        border: none;
+        color: black;
+        padding-right: 60px;
+        justify-self: center;
+    }
 
         .search-bar-position {
-            width: 1124px;
+            width: 1125px;
             display: flex;
             justify-content: center;
 
-        }
+    }
 
-        .search-bar-disposition {
-            display: flex;
-            border: 2px solid;
-            padding-right: 10px;
-            border-radius: 10px;
-        }
+    .lupa{
+        align-self: center;
+    }
 
-        input:focus-within {
-            outline: none;
-        }
+    .search-bar-disposition {
+        display: flex;
+        height: 40px;
+        border: 2px solid;
+        padding-right: 10px;
+        border-radius: 10px;
+    }
 
-        h6 {
-            font-size: 15px;
-        }
-    </style>
-    {% endblock style %}
+    input:focus-within {
+        outline: none;
+    }
 
-    {% block content %}
+    h6 {
+        font-size: 15px;
+    }
+
+    .autor {
+        font-size: 20px;
+        text-decoration: none;
+        color: black;
+    }
+
+    .professor {
+        font-size: 20px;
+        margin-left: 100px;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    .header-bottoms-left {
+        width: 250px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .a8 {
+        text-decoration: none;
+        color: white;
+    }
+
+</style>
+<body>
     {% if user.is_authenticated %}
 
     <header>
-        <a class="a3" href="{% url 'forum' %} ">Criar</a>
-        <a class="a4" href="{% url 'myDiscs' %} ">Minhas discussões</a>
-        <h1>Weheite</h1>
+        <div class="header-bottoms-left">
+            <a class="a3" href="{% url 'forum' %} ">Criar</a>
+            <a class="a4" href="{% url 'myDiscs' %} ">Minhas discussões</a>
+        </div>
+        <h1><a class="a8" href="{% url 'home' %} ">Weheite</a></h1>
         <a class="a2" href="{% url 'logout' %} ">Logout</a>
     </header>
 
@@ -218,7 +248,7 @@
         <form method="GET" action="{% url 'home' %}">
             <div class="search-bar-disposition">
                 <input type="text" name="q" class="search-bar" placeholder="Search Discussions" />
-                <h6><i class="fa-solid fa-magnifying-glass"></i></h6>
+                <p class="lupa"><i class="fa-solid fa-magnifying-glass"></i></p>
             </div>
         </form>
     </div>
@@ -227,16 +257,14 @@
     {% for posts in discussao %}
     <div class="footer-content">
         <div class="BoxAutor">
-            <a href="{{posts.autor_id}}/profile/">
-                <p><b><i>@{{posts.autor}}</i></b></p>
-            </a>
+            <a href="{{posts.autor_id}}/profile/" class = "autor"><p><b><i>@{{posts.autor}}</i></b></p></a>
             {% if posts.autor.professor %}
-                PROFESSOR
+                <p class="professor"><b>PROFESSOR</b></p>
             {% endif %}
             {% if posts.autor in posts.respondida.all %}
-            <div class="statusforum" style="color: green;">Resolvida<i class="fa-solid fa-check"></i></div>
+            <p class="statusforum" style="color: green; font-size: 20px;">Resolvida<i class="fa-solid fa-check"></i></p>
             {% else %}
-            <div class="statusforum" style="color: red;">Não Resolvida <i class="fa-regular fa-circle-xmark"></i></div>
+            <p class="statusforum" style="color: red; font-size: 20px;">Não Resolvida <i class="fa-regular fa-circle-xmark"></i></p>
             {%endif%}
         </div>
         <div class="BoxContent">
@@ -260,7 +288,6 @@
     </div>
     {% endfor %}
     {% endcomment %}
-
     {% else %}
     <div class="not-logged">
         <h2>Weheite</h2>
@@ -270,10 +297,8 @@
         </div>
     </div>
     {% endif %}
-    {% endblock content %}
-
-
 </div>
 
 
 </div>
+</body>
