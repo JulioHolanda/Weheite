@@ -5,8 +5,7 @@ from django.urls import reverse
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 from .forms import CreateInForum, SignupForm  # , CreateInReply,
-from .models import Forum, Forum_done, Like, Reply
-
+from .models import Forum, Forum_done, Like, Reply,Profile
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -27,8 +26,12 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
-            user.profile.birth_date = form.cleaned_data.get('birth_date')
-            user.save()
+           
+            birth_date=form.cleaned_data.get('birth_date')
+            professor=form.cleaned_data.get('professor')
+         
+            profile=Profile.objects.create(user=user,professor=professor,birth_date=birth_date)
+            profile.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')            
             user = authenticate(username=username, password=raw_password)

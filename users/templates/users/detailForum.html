@@ -220,7 +220,7 @@
             <a href="{{forum.autor_id}}/profile/" class = "autor">
                 <p class="autor"><b><i>@{{forum.autor}}</i></b></p>
             </a>
-            {% if forum.autor.professor %}
+            {% if forum.autor.profile.professor %}
                 <p class="professor"><b>PROFESSOR</b></p>
             {% endif %}
         </div>
@@ -256,7 +256,7 @@
             <a href="{{reply.autor_id}}/profile/" class = "autor">
                 <p class="autor"><b><i>@{{reply.autor}}</i></b></p>
             </a>
-            {% if reply.autor.professor %}
+            {% if reply.autor.profile.professor %}
                 <p class="professor"><b>PROFESSOR</b></p>
             {% endif %}
         </div>

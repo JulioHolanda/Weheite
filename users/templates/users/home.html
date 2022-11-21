@@ -258,7 +258,7 @@
     <div class="footer-content">
         <div class="BoxAutor">
             <a href="{{posts.autor_id}}/profile/" class = "autor"><p><b><i>@{{posts.autor}}</i></b></p></a>
-            {% if posts.autor.professor %}
+            {% if posts.autor.profile.professor %}
                 <p class="professor"><b>PROFESSOR</b></p>
             {% endif %}
             {% if posts.autor in posts.respondida.all %}
